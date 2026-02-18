@@ -1,21 +1,10 @@
-const mouseCursor = document.querySelector(".cursor");
-const navLinks = document.querySelectorAll(".nav-links li");
-
-window.addEventListener("mousemove", cursorFunc);
-
-function cursorFunc(e) {
-  mouseCursor.style.top = e.pageY + "px";
-  mouseCursor.style.left = e.pageX + "px";
-}
-
-navLinks.forEach(function (link) {
-  link.addEventListener("mouseout", function () {
-    mouseCursor.classList.remove("link-grow");
-    link.classList.remove("hovered-link");
+const fixCursorDisappear = () => {
+  document.addEventListener('mousemove', (e) => {
+    const cursor = document.querySelector('.cursor');
+    if (cursor) {
+      cursor.style.left = `${e.clientX}px`;
+      cursor.style.top = `${e.clientY}px`;
+    }
   });
-
-  link.addEventListener("mouseover", function () {
-    mouseCursor.classList.add("link-grow");
-    link.classList.add("hovered-link");
-  });
-});
+};
+fixCursorDisappear();
